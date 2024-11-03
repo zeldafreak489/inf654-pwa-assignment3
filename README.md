@@ -1,4 +1,4 @@
-# PWA Prototype - Iris Perry
+# PWA AnonChef - Iris Perry
 
 This is my expanded PWA Prototype for my INF654VA class. It is a recipe app that allows users to create an anonymous account, share recipes, and save recipes.
 It has now been upgraded into a PWA with a web manifest and service worker.
