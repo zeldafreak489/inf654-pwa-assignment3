@@ -49,9 +49,6 @@
                             <a href="/pages/contact.html" class="waves-effect white-text">Contact</a>
                         </li>
                         <li>
-                            <a href="/pages/myaccount.html" class="waves-effect white-text">My Account</a>
-                        </li>
-                        <li>
                             <a href="/pages/mycookbook.html" class="waves-effect white-text">My Cookbook</a>
                         </li>
                         <li>
@@ -95,40 +92,16 @@
     </aside>
 
     <main class="container">
-        <h1 class="center-align">Chicken Noodle Soup</h1>
+        <!-- Recipe Title -->
+        <h1 class="center-align"></h1>
         
         <!-- Recipe Image -->
         <div class="center-align">
-            <img src="/img/chicken-noodle-soup.jpg" alt="Chicken Noodle Soup" class="responsive-img">
+            <img src="" alt="" class="responsive-img">
         </div>
 
-        <!-- Ingredients Section -->
-        <h5>Ingredients</h5>
-        <ul>
-            <li>1 tablespoon olive oil</li>
-            <li>1 onion, chopped</li>
-            <li>1 tablespoon ginger, minced</li>
-            <li>2 carrots, sliced</li>
-            <li>2 celery stalks, sliced</li>
-            <li>3 cloves garlic, minced</li>
-            <li>1 chili pepper, sliced</li>
-            <li>6 cups chicken broth</li>
-            <li>2 cups cooked chicken, shredded</li>
-            <li>1 cup noodles</li>
-            <li>Salt and pepper to taste</li>
-            <li>Fresh parsley, chopped (for garnish)</li>
-        </ul>
-
-        <!-- Instructions Section -->
-        <h5>Instructions</h5>
-        <ol>
-            <li>In a large pot, heat olive oil over medium heat. Add onion, carrots, and celery; sauté until softened.</li>
-            <li>Add garlic and sauté for another minute until fragrant.</li>
-            <li>Pour in the chicken broth and bring to a boil.</li>
-            <li>Add the shredded chicken and noodles. Cook until noodles are tender.</li>
-            <li>Season with salt and pepper to taste.</li>
-            <li>Garnish with fresh parsley before serving.</li>
-        </ol>
+        <!-- Recipe Body -->
+        <section id="recipe-body"></section>
 
         <!-- Back to Recipes Button -->
         <div class="center-align" id="back_button">
@@ -205,6 +178,7 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="/js/materialize.min.js"></script>
-    <script src="/js/ui.js"></script>
+    <script type="module" src="/js/ui.js"></script>
+    <script type="module" src="/js/firebaseDB.js"></script>
 </body>
 </html>

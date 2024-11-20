@@ -14,6 +14,7 @@ const ASSETS_TO_CACHE = [
     "/css/style.css",
     "/js/materialize.min.js",
     "/js/ui.js",
+    "/js/firebaseDB.js",
     "/img/alfredo.jpg",
     "/img/bowl-of-pasta.jpg",
     "/img/chicken-noodle-soup.jpg",
@@ -50,8 +51,26 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
     console.log("Service Worker: Fetching...", event.request.url);
     event.respondWith(
-        caches.match(event.request).then((response) => {
-            return response || fetch(event.request);
-        })
+        (async function () {
+            // only handle GET requests for caching
+            if (event.request.method !== "GET") {
+                return fetch(event.request);
+            }
+
+            const cachedResponse = await caches.match(event.request);
+                if (cachedResponse) {
+                    return cachedResponse; // Return cached response if available
+                }
+    
+                try {
+                    const networkResponse = await fetch(event.request);
+                    const cache = await caches.open(CACHE_NAME);
+                    cache.put(event.request, networkResponse.clone()); // Update cache with new response
+                    return networkResponse;
+                } catch (error) {
+                    console.error("Fetch failed, returning offline page:", error);
+                    // add offline page here
+                }
+        })()
     );
 });

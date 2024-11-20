@@ -153,3 +153,29 @@ footer {
 #submitbutton {
     padding-bottom: 20px;
 }
+
+#imagePreview {
+    padding-top: 10px; /* Adds space above the image */
+    margin-top: 20px; /* Adds space between the file input and preview */
+}
+
+/* Make the file input and label block elements */
+.input-field {
+    display: block;
+    margin-bottom: 20px; /* Optional: add space between fields */
+}
+
+label[for="imageUpload"] {
+    display: block; /* Make sure label takes up a full line */
+    margin-bottom: 5px; /* Adds space below label */
+}
+
+#imageUpload {
+    display: block; /* Makes the input occupy the full width available */
+    width: 100%; /* Ensures the file input takes up all available width */
+    margin-top: 10px; /* Adds space between label and input */
+}
+
+.submit-recipe-cookbook {
+    margin-bottom: 20px;
+}

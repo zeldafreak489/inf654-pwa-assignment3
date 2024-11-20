@@ -3,6 +3,19 @@
 This is my expanded PWA Prototype for my INF654VA class. It is a recipe app that allows users to create an anonymous account, share recipes, and save recipes.
 It has now been upgraded into a PWA with a web manifest and service worker.
 
+# November 19, 2024 Assignment 4
+This app has now been upgraded with IndexedDB and Firebase Firestore. I have integrated them in the MyCookbook section so far.
+The user can upload recipes to their cookbook and remove them. I have not yet figured out how I am going to handle storing photos, so at the moment there is just a dummy photo of chicken noodle soup added. I also need to implement users and user authentication before I fully complete the application. The users are integral to recipe sharing, so I just wanted to set up an intermediate version of IndexedDB and Firebase first.
+
+# CRUD Instructions
+On the My Cookbook page, you can Create recipes using the add button at the bottom of the page. A modal form will pop up and allow you to input the recipe title, description, body, and an image for it.
+The application Reads the recipes from IndexedDB and Firebase Firestore and displays them in your cookbook.
+The application Updates the recipes because when it is offline, it uses IndexedDB to store the recipes and syncs them with Firebase DB when it comes back online.
+If you press the delete button on a recipe card, it will delete the recipe from both IndexedDB and Firebase.
+
+# Synchronization Process
+When the application is offline, if a user adds a recipe, it is stored in IndexedDB. When the application comes back online, on the next refresh, it synchronized with Firebase Firestore and the recipes added offline are added there.
+
 # Service Worker
 What is a Service Worker?
 
