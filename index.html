@@ -43,16 +43,16 @@
                             <a href="/pages/recipes.html" class="waves-effect white-text">Recipes</a>
                         </li>
                         <li>
-                            <a href="/pages/account.html" class="waves-effect white-text">Create an Account</a>
-                        </li>
-                        <li>
                             <a href="/pages/contact.html" class="waves-effect white-text">Contact</a>
                         </li>
                         <li>
                             <a href="/pages/mycookbook.html" class="waves-effect white-text">My Cookbook</a>
                         </li>
                         <li>
-                            <a href="/pages/login.html" class="btn-small orange darken-2">Log In</a>
+                            <a href="/pages/login.html" class="btn-small orange darken-2" id="login-btn">Log In/Sign Up</a>
+                        </li>
+                        <li>
+                            <a id="logout-btn" class="btn-small orange darken-2" style="display: none;">Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -72,9 +72,6 @@
             </li>
             <li>
                 <a href="/pages/recipes.html" class="waves-effect grey-text text-darken-4">Recipes</a>
-            </li>
-            <li>
-                <a href="/pages/account.html" class="waves-effect grey-text text-darken-4">Create an Account</a>
             </li>
             <li>
                 <a href="/pages/contact.html" class="waves-effect grey-text text-darken-4">Contact</a>
@@ -108,7 +105,7 @@
                 <!-- Create an Account Button -->
                 <div class="centered-button">
                     <a 
-                        href="/pages/account.html"
+                        href="/pages/login.html"
                         class="waves-effect waves-light btn orange darken-2 hoverable">Create an Account</a>
                 </div>
             </div>          
@@ -146,6 +143,9 @@
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="module" src="/js/ui.js"></script>
+    <script type="module" src="/js/firebaseConfig.js"></script>
     <script type="module" src="/js/firebaseDB.js"></script>
+    <script type="module" src="/js/signin.js"></script>
+    <script type="module" src="/js/auth.js"></script>
 </body>
 </html>

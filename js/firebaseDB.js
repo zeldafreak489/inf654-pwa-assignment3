@@ -1,15 +1,16 @@
+import { currentUser } from "./auth.js";
+import {db} from "./firebaseConfig.js";
+
 // Import the functions you need from the SDKs you need
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
 import { 
-    getFirestore,
     collection,
     doc,
     addDoc,
     getDocs,
     deleteDoc,
-    updateDoc
+    updateDoc, 
+    setDoc
  } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,26 +18,19 @@ import {
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  
-const firebaseConfig = {
-    apiKey: "AIzaSyAfmuVqG3opRDsxF__6ARwL7pmZKHL_fo4",
-    authDomain: "anonchef-df4bd.firebaseapp.com",
-    projectId: "anonchef-df4bd",
-    storageBucket: "anonchef-df4bd.firebasestorage.app",
-    messagingSenderId: "619983012072",
-    appId: "1:619983012072:web:c81fb0e2a2e7169e84c95d",
-    measurementId: "G-XYY7R7FXHQ"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
 
 // Add a Recipe
 export async function addRecipeToFirebase(recipe) {
     try {
-        const docRef = await addDoc(collection(db, "recipes"), recipe);
+        if (!currentUser) {
+            throw new Error("User is not authenticated.");
+        }
+        const userId = currentUser.uid;
+        console.log("userID: ", userId);
+        const userRef = doc(db, "users", userId);
+        await setDoc(userRef, {email: currentUser.email }, {merge:true});
+        const recipesRef = collection(userRef, "recipes");
+        const docRef = await addDoc(recipesRef, recipe);
         return { id: docRef.id, ...recipe };
     } catch (error) {
         console.error("Error adding task: ", error);
@@ -57,7 +51,12 @@ export async function addRecipeToFirebase(recipe) {
 export async function getRecipesFromFirebase() {
     const recipes = [];
     try {
-        const querySnapshot = await getDocs(collection(db, "recipes"));
+        if (!currentUser) {
+            throw new Error("User is not authenticated.");
+        }
+        const userId = currentUser.uid;
+        const recipesRef = collection(doc(db, "users", userId), "recipes");
+        const querySnapshot = await getDocs(recipesRef);
         querySnapshot.forEach((doc) => {
             recipes.push({ id: doc.id, ...doc.data() });
         });
@@ -70,16 +69,24 @@ export async function getRecipesFromFirebase() {
 // Delete Recipe
 export async function deleteRecipeFromFirebase(id) {
     try {
-        await deleteDoc(doc(db, "recipes", id));
+        if (!currentUser) {
+            throw new Error("User is not authenticated.");
+        }
+        const userId = currentUser.uid;
+        await deleteDoc(doc(db, "users", userId, "recipes", id));
     } catch (error) {
         console.error("Error deleting recipe: ", error);
     }
 }
 
 // Update Recipe
-export async function updateTaskInFirebase(id, updatedData) {
+export async function updateRecipeInFirebase(id, updatedData) {
     try {
-        const recipeRef = doc(db, "recipes", id);
+        if (!currentUser) {
+            throw new Error("User is not authenticated.");
+        }
+        const userId = currentUser.uid;
+        const recipeRef = doc(db, "users", userId, "recipes", id);
         await updateDoc(recipeRef, updatedData);
     } catch (error) {
         console.error("Error updating recipe: ", error);

@@ -1,4 +1,4 @@
-const CACHE_NAME = "anon-chef-v1";
+const CACHE_NAME = "anon-chef-v3";
 
 const ASSETS_TO_CACHE = [
     "/",
@@ -15,6 +15,8 @@ const ASSETS_TO_CACHE = [
     "/js/materialize.min.js",
     "/js/ui.js",
     "/js/firebaseDB.js",
+    "/js/auth.js",
+    "/js/signin.js",
     "/img/alfredo.jpg",
     "/img/bowl-of-pasta.jpg",
     "/img/chicken-noodle-soup.jpg",

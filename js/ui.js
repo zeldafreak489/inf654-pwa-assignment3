@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function(){
     M.Sidenav.init(menus, { edge: "left" });
 
     // Load recipes from IndexedDB
-    loadRecipes();
-    syncRecipes();
+    // loadRecipes();
+    // syncRecipes();
 
     // Check storage usage
     checkStorageUsage();
@@ -84,7 +84,7 @@ async function addRecipe(recipe) {
 }
 
 // Sync recipes from IndexedDB to Firebase
-async function syncRecipes() {
+export async function syncRecipes() {
     const db = await createDB();
     const tx = db.transaction("recipes", "readonly");
     const store = tx.objectStore("recipes");
@@ -159,7 +159,7 @@ async function deleteRecipe(id) {
 }
 
 // Load Recipes with Transaction
-async function loadRecipes() {
+export async function loadRecipes() {
     const db = await createDB();
 
     const recipeContainer = document.querySelector(".cookbook");

@@ -24,7 +24,7 @@ nav ul {
     margin: 0;
   }
   
-  img {
+img {
     width: 100%;
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Make sure the whole image is visible */
